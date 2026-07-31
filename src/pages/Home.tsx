@@ -1,3 +1,7 @@
+const DEFAULT_MAX_DEPTH = 3;
+const DEFAULT_MAX_PAGES = 100;
+
+
 import {
   AlertTriangle,
   BarChart3,
@@ -15,8 +19,7 @@ import { useNavigate } from "react-router-dom";
 import AppShell from "../components/layout/AppShell";
 import { createWebsiteAudit } from "../services/api";
 
-const DEFAULT_MAX_DEPTH = 2;
-const DEFAULT_MAX_PAGES = 10;
+
 
 const loadingMessages = [
   "Starting audit...",
