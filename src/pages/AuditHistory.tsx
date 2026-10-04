@@ -3,7 +3,6 @@ import {
   CalendarDays,
   CheckCircle2,
   FileSearch,
-  
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -73,13 +72,13 @@ function AuditHistory() {
         {/* Page intro */}
         <div className="mb-5 flex items-end justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-[rgba(233,30,140,0.09)] px-3 py-1">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#E6F4F7] px-3 py-1">
               <CalendarDays
                 size={12}
-                className="text-[#E91E8C]"
+                className="text-[#0e7490]"
               />
 
-              <span className="text-xs font-semibold text-[#E91E8C]">
+              <span className="text-xs font-semibold text-[#0e7490]">
                 Audit History
               </span>
             </div>
@@ -97,7 +96,7 @@ function AuditHistory() {
           <button
             type="button"
             onClick={() => navigate("/")}
-            className="hidden shrink-0 rounded-[12px] bg-[#E91E8C] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#D91A80] sm:block"
+            className="hidden shrink-0 rounded-[12px] bg-[#0b2a4a] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0e7490] sm:block"
           >
             New Audit
           </button>
@@ -109,7 +108,7 @@ function AuditHistory() {
             <div className="flex items-center gap-2">
               <FileSearch
                 size={16}
-                className="text-[#E91E8C]"
+                className="text-[#0e7490]"
               />
 
               <h3 className="text-sm font-semibold text-[#364153]">
@@ -195,7 +194,7 @@ function AuditHistory() {
                           onClick={() =>
                             navigate(`/audits/${audit.id}`)
                           }
-                          className="block max-w-full truncate text-left text-sm font-medium text-[#364153] hover:text-[#E91E8C]"
+                          className="block max-w-full truncate text-left text-sm font-medium text-[#364153] hover:text-[#0e7490]"
                           title={audit.url}
                         >
                           {audit.url}
@@ -237,7 +236,7 @@ function AuditHistory() {
                           onClick={() =>
                             navigate(`/audits/${audit.id}`)
                           }
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-[9px] text-[#99A1AF] transition hover:bg-[#F9FAFB] hover:text-[#E91E8C]"
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-[9px] text-[#99A1AF] transition hover:bg-[#E6F4F7] hover:text-[#0e7490]"
                           aria-label={`Open ${audit.url}`}
                         >
                           <ArrowUpRight
@@ -258,7 +257,7 @@ function AuditHistory() {
         <button
           type="button"
           onClick={() => navigate("/")}
-          className="mt-4 w-full rounded-[12px] bg-[#E91E8C] px-4 py-2.5 text-sm font-semibold text-white sm:hidden"
+          className="mt-4 w-full rounded-[12px] bg-[#0b2a4a] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0e7490] sm:hidden"
         >
           New Audit
         </button>

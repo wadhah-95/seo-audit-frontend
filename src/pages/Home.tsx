@@ -1,7 +1,6 @@
 const DEFAULT_MAX_DEPTH = 3;
 const DEFAULT_MAX_PAGES = 100;
 
-
 import {
   AlertTriangle,
   BarChart3,
@@ -18,8 +17,6 @@ import { useNavigate } from "react-router-dom";
 
 import AppShell from "../components/layout/AppShell";
 import { createWebsiteAudit } from "../services/api";
-
-
 
 const loadingMessages = [
   "Starting audit...",
@@ -40,8 +37,8 @@ const stats = [
     label: "Total Audits",
     value: "248",
     icon: BarChart3,
-    iconBg: "bg-[#FCE7F3]",
-    iconColor: "text-[#E91E8C]",
+    iconBg: "bg-[#E6F4F7]",
+    iconColor: "text-[#0e7490]",
   },
   {
     label: "Avg Score",
@@ -195,8 +192,8 @@ function Home() {
             {/* Left side */}
             <div className="p-7 md:p-8">
               {/* Badge */}
-              <div className="inline-flex items-center rounded-full bg-[rgba(233,30,140,0.09)] px-3 py-1">
-                <span className="text-xs font-semibold text-[#E91E8C]">
+              <div className="inline-flex items-center rounded-full bg-[#E6F4F7] px-3 py-1">
+                <span className="text-xs font-semibold text-[#0e7490]">
                   SEO Performance
                 </span>
               </div>
@@ -204,7 +201,7 @@ function Home() {
               {/* Heading */}
               <h2 className="mt-4 max-w-[360px] text-2xl font-bold leading-[1.35] text-[#1E2939]">
                 Monitor your Website&apos;s{" "}
-                <span className="text-[#E91E8C]">
+                <span className="text-[#0b2a4a]">
                   SEO Performance
                 </span>
               </h2>
@@ -220,9 +217,9 @@ function Home() {
               {isSubmitting ? (
                 <div className="mt-6 rounded-[14px] border border-[#F3F4F6] bg-[#FCFCFD] p-5">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[rgba(233,30,140,0.09)]">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E6F4F7]">
                       <svg
-                        className="h-4 w-4 animate-spin text-[#E91E8C]"
+                        className="h-4 w-4 animate-spin text-[#0e7490]"
                         viewBox="0 0 24 24"
                         fill="none"
                         aria-hidden="true"
@@ -267,7 +264,7 @@ function Home() {
                     className="mt-5 h-2 overflow-hidden rounded-full bg-[#F3F4F6]"
                     aria-label="Audit in progress"
                   >
-                    <div className="h-full w-1/3 animate-pulse rounded-full bg-[#E91E8C]" />
+                    <div className="h-full w-1/3 animate-pulse rounded-full bg-[#0e7490]" />
                   </div>
                 </div>
               ) : (
@@ -284,12 +281,12 @@ function Home() {
                       }
                       placeholder="https://yourwebsite.com"
                       aria-label="Website URL"
-                      className="h-[41px] min-w-0 flex-1 rounded-[14px] border border-[#E5E7EB] px-4 text-sm text-[#1E2939] outline-none placeholder:text-[#99A1AF] focus:border-[#E91E8C]"
+                      className="h-[41px] min-w-0 flex-1 rounded-[14px] border border-[#E5E7EB] px-4 text-sm text-[#1E2939] outline-none placeholder:text-[#99A1AF] focus:border-[#0e7490]"
                     />
 
                     <button
                       type="submit"
-                      className="flex h-[41px] shrink-0 items-center justify-center gap-2 rounded-[14px] bg-[#E91E8C] px-5 text-sm font-semibold text-white transition hover:bg-[#D91A80]"
+                      className="flex h-[41px] shrink-0 items-center justify-center gap-2 rounded-[14px] bg-[#0b2a4a] px-5 text-sm font-semibold text-white transition hover:bg-[#0e7490]"
                     >
                       Start Audit
                       <span>→</span>
@@ -333,7 +330,7 @@ function Home() {
                   className="absolute inset-0 rounded-full"
                   style={{
                     background:
-                      "conic-gradient(#E91E8C 0deg 295deg, transparent 295deg 360deg)",
+                      "conic-gradient(#0e7490 0deg 295deg, transparent 295deg 360deg)",
                     mask:
                       "radial-gradient(farthest-side, transparent calc(100% - 13px), #000 calc(100% - 12px))",
                     WebkitMask:
@@ -357,7 +354,7 @@ function Home() {
                 <ScoreMiniCard
                   label="Performance"
                   score="78"
-                  tone="pink"
+                  tone="blue"
                 />
 
                 <ScoreMiniCard
@@ -430,7 +427,7 @@ function Home() {
             <button
               type="button"
               onClick={() => navigate("/audits")}
-              className="text-xs font-medium text-[#E91E8C] hover:underline"
+              className="text-xs font-medium text-[#0e7490] hover:underline"
             >
               View all →
             </button>
@@ -507,7 +504,7 @@ function Home() {
 interface ScoreMiniCardProps {
   label: string;
   score: string;
-  tone: "pink" | "green" | "blue" | "orange";
+  tone: "blue" | "green" | "orange";
 }
 
 function ScoreMiniCard({
@@ -516,9 +513,8 @@ function ScoreMiniCard({
   tone,
 }: ScoreMiniCardProps) {
   const styles = {
-    pink: "text-[#E91E8C]",
+    blue: "text-[#0e7490]",
     green: "text-[#16A34A]",
-    blue: "text-[#3B82F6]",
     orange: "text-[#F59E0B]",
   };
 

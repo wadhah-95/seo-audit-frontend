@@ -1,7 +1,5 @@
 import {
-  
   ArrowLeft,
-  
   ExternalLink,
   Gauge,
   Globe,
@@ -219,7 +217,7 @@ function PageDetails() {
             onClick={() =>
               navigate(`/audits/${audit.id}`)
             }
-            className="mb-3 inline-flex items-center gap-1.5 text-xs font-medium text-[#99A1AF] transition hover:text-[#E91E8C]"
+            className="mb-3 inline-flex items-center gap-1.5 text-xs font-medium text-[#99A1AF] transition hover:text-[#0e7490]"
           >
             <ArrowLeft size={14} />
             Back to Audit
@@ -248,7 +246,7 @@ function PageDetails() {
               href={page.url}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex w-fit items-center gap-1.5 rounded-[10px] border border-[#E5E7EB] bg-white px-3 py-2 text-xs font-medium text-[#6A7282] hover:text-[#E91E8C]"
+              className="inline-flex w-fit items-center gap-1.5 rounded-[10px] border border-[#E5E7EB] bg-white px-3 py-2 text-xs font-medium text-[#6A7282] hover:text-[#0e7490]"
             >
               Open page
               <ExternalLink size={13} />
@@ -296,7 +294,7 @@ function PageDetails() {
             <div className="flex items-center gap-2">
               <Gauge
                 size={16}
-                className="text-[#E91E8C]"
+                className="text-[#0e7490]"
               />
 
               <h3 className="text-sm font-semibold text-[#364153]">
@@ -329,7 +327,7 @@ function PageDetails() {
             <div className="flex items-center gap-2">
               <Search
                 size={16}
-                className="text-[#E91E8C]"
+                className="text-[#0e7490]"
               />
 
               <h3 className="text-sm font-semibold text-[#364153]">
@@ -390,7 +388,7 @@ function PageDetails() {
               <div className="flex items-center gap-2">
                 <Image
                   size={16}
-                  className="text-[#E91E8C]"
+                  className="text-[#0e7490]"
                 />
 
                 <h3 className="text-sm font-semibold text-[#364153]">
@@ -419,7 +417,7 @@ function PageDetails() {
               <div className="flex items-center gap-2">
                 <Link2
                   size={16}
-                  className="text-[#E91E8C]"
+                  className="text-[#0e7490]"
                 />
 
                 <h3 className="text-sm font-semibold text-[#364153]">
@@ -460,7 +458,7 @@ function PageDetails() {
             <div className="flex items-center gap-2">
               <Globe
                 size={16}
-                className="text-[#E91E8C]"
+                className="text-[#0e7490]"
               />
 
               <h3 className="text-sm font-semibold text-[#364153]">
@@ -512,7 +510,7 @@ function PageDetails() {
             <div className="flex items-center gap-2">
               <ShieldCheck
                 size={16}
-                className="text-[#E91E8C]"
+                className="text-[#0e7490]"
               />
 
               <h3 className="text-sm font-semibold text-[#364153]">

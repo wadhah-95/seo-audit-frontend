@@ -6,6 +6,7 @@ import {
   Settings,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import logo from "./logo.png";
 
 interface SidebarProps {
   auditId?: number;
@@ -56,10 +57,12 @@ function Sidebar({
       {/* Branding */}
       <div className="flex h-[90px] items-center px-8">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-[#E91E8C]">
-            <span className="text-sm font-bold text-white">
-              Z
-            </span>
+          <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-[10px]">
+            <img
+              src={logo}
+              alt="Zerda logo"
+              className="h-full w-full object-contain"
+            />
           </div>
 
           <div className="leading-none">
@@ -86,7 +89,7 @@ function Sidebar({
                   [
                     "flex h-10 items-center gap-3 rounded-[10px] px-3 text-sm transition",
                     isActive
-                      ? "bg-[#E91E8C] font-medium text-white shadow-sm"
+                      ? "bg-[#0b2a4a] font-medium text-white shadow-sm"
                       : "text-[#6A7282] hover:bg-white hover:text-[#1E2939]",
                   ].join(" ")
                 }
@@ -141,7 +144,7 @@ function Sidebar({
                       [
                         "flex h-10 items-center gap-3 rounded-[10px] px-3 text-sm transition",
                         isActive
-                          ? "bg-[#E91E8C] font-medium text-white shadow-sm"
+                          ? "bg-[#0b2a4a] font-medium text-white shadow-sm"
                           : "text-[#6A7282] hover:bg-white hover:text-[#1E2939]",
                       ].join(" ")
                     }

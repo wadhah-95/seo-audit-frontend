@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import logo from "./logo.png";
 
 interface HeaderProps {
   title: string;
@@ -116,7 +117,7 @@ function Header({ title, subtitle }: HeaderProps) {
               type="search"
               placeholder="Search..."
               aria-label="Search"
-              className="h-[34px] w-[192px] rounded-[10px] border border-[#F3F4F6] bg-[#F9FAFB] py-2 pl-8 pr-4 text-xs text-[#1E2939] outline-none placeholder:text-black/50 focus:border-[#E91E8C]"
+              className="h-[34px] w-[192px] rounded-[10px] border border-[#F3F4F6] bg-[#F9FAFB] py-2 pl-8 pr-4 text-xs text-[#1E2939] outline-none placeholder:text-black/50 focus:border-[#0e7490]"
             />
           </div>
 
@@ -128,17 +129,19 @@ function Header({ title, subtitle }: HeaderProps) {
           >
             <Bell size={16} strokeWidth={1.7} />
 
-            <span className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-[#E91E8C]" />
+            <span className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-[#0e7490]" />
           </button>
 
-          {/* Avatar */}
+          {/* Zerda Logo */}
           <div
             aria-label="User profile"
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-[#E91E8C]"
+            className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full"
           >
-            <span className="text-xs font-bold leading-4 text-white">
-              Z
-            </span>
+            <img
+              src={logo}
+              alt="Zerda logo"
+              className="h-full w-full object-contain"
+            />
           </div>
         </div>
       </header>
@@ -156,7 +159,7 @@ function Header({ title, subtitle }: HeaderProps) {
                   [
                     "flex h-11 items-center gap-3 rounded-[10px] px-4 text-sm transition",
                     isActive
-                      ? "bg-[#E91E8C] font-medium text-white"
+                      ? "bg-[#0b2a4a] font-medium text-white"
                       : "text-[#6A7282] hover:bg-[#F9FAFB] hover:text-[#1E2939]",
                   ].join(" ")
                 }
@@ -172,7 +175,7 @@ function Header({ title, subtitle }: HeaderProps) {
                   [
                     "flex h-11 items-center gap-3 rounded-[10px] px-4 text-sm transition",
                     isActive
-                      ? "bg-[#E91E8C] font-medium text-white"
+                      ? "bg-[#0b2a4a] font-medium text-white"
                       : "text-[#6A7282] hover:bg-[#F9FAFB] hover:text-[#1E2939]",
                   ].join(" ")
                 }
@@ -218,7 +221,7 @@ function Header({ title, subtitle }: HeaderProps) {
                         [
                           "flex h-11 items-center gap-3 rounded-[10px] px-4 text-sm transition",
                           isActive
-                            ? "bg-[#E91E8C] font-medium text-white"
+                            ? "bg-[#0b2a4a] font-medium text-white"
                             : "text-[#6A7282] hover:bg-[#F9FAFB] hover:text-[#1E2939]",
                         ].join(" ")
                       }

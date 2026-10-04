@@ -44,10 +44,14 @@ public/
   favicon.svg
   icons.svg
 src/
-  assets/
-    hero.png
-    react.svg
-    vite.svg
+  components/
+    layout/
+      ui/
+        audit/
+          StatusState.tsx
+      AppShell.tsx
+      Header.tsx
+      Sidebar.tsx
   lib/
     utils.ts
   pages/
@@ -57,10 +61,10 @@ src/
     PageDetails.tsx
   services/
     api.ts
-  App.css
   App.tsx
   index.css
   main.tsx
+.env.production
 .gitignore
 .oxlintrc.json
 index.html
@@ -106,239 +110,608 @@ This section contains the contents of the repository's files.
 </svg>
 </file>
 
-<file path="src/assets/react.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+<file path="src/components/layout/ui/audit/StatusState.tsx">
+import type { ReactNode } from "react";
+import {
+  AlertTriangle,
+  CheckCircle2,
+  LoaderCircle,
+} from "lucide-react";
+
+type StatusStateVariant =
+  | "loading"
+  | "error"
+  | "empty"
+  | "success";
+
+interface StatusStateProps {
+  variant: StatusStateVariant;
+  title: string;
+  description?: string;
+  actionLabel?: string;
+  onAction?: () => void;
+  icon?: ReactNode;
+}
+
+function StatusState({
+  variant,
+  title,
+  description,
+  actionLabel,
+  onAction,
+  icon,
+}: StatusStateProps) {
+  const defaultIcon = {
+    loading: (
+      <LoaderCircle
+        size={24}
+        className="animate-spin text-[#E91E8C]"
+      />
+    ),
+    error: (
+      <AlertTriangle
+        size={22}
+        className="text-[#DC2626]"
+      />
+    ),
+    empty: (
+      <AlertTriangle
+        size={22}
+        className="text-[#F59E0B]"
+      />
+    ),
+    success: (
+      <CheckCircle2
+        size={22}
+        className="text-[#16A34A]"
+      />
+    ),
+  }[variant];
+
+  const iconBackground = {
+    loading: "bg-[rgba(233,30,140,0.09)]",
+    error: "bg-[#FEF2F2]",
+    empty: "bg-[#FFF7E6]",
+    success: "bg-[#ECFDF3]",
+  }[variant];
+
+  return (
+    <div className="flex min-h-[320px] flex-col items-center justify-center px-6 text-center">
+      <div
+        className={`flex h-12 w-12 items-center justify-center rounded-full ${iconBackground}`}
+      >
+        {icon ?? defaultIcon}
+      </div>
+
+      <h2 className="mt-4 text-sm font-semibold text-[#1E2939]">
+        {title}
+      </h2>
+
+      {description && (
+        <p className="mt-2 max-w-md text-xs leading-5 text-[#6A7282]">
+          {description}
+        </p>
+      )}
+
+      {actionLabel && onAction && (
+        <button
+          type="button"
+          onClick={onAction}
+          className="mt-4 rounded-[12px] bg-[#E91E8C] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#D91A80]"
+        >
+          {actionLabel}
+        </button>
+      )}
+    </div>
+  );
+}
+
+export default StatusState;
 </file>
 
-<file path="src/assets/vite.svg">
-<svg xmlns="http://www.w3.org/2000/svg" width="77" height="47" fill="none" aria-labelledby="vite-logo-title" viewBox="0 0 77 47"><title id="vite-logo-title">Vite</title><style>.parenthesis{fill:#000}@media (prefers-color-scheme:dark){.parenthesis{fill:#fff}}</style><path fill="#9135ff" d="M40.151 45.71c-.663.844-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.493c-.92 0-1.457-1.04-.92-1.788l7.479-10.471c1.07-1.498 0-3.578-1.842-3.578H15.443c-.92 0-1.456-1.04-.92-1.788l9.696-13.576c.213-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.472c-1.07 1.497 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.087.89 1.83L40.153 45.712z"/><mask id="a" width="48" height="47" x="14" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#000" d="M40.047 45.71c-.663.843-2.02.374-2.02-.699V34.708a2.26 2.26 0 0 0-2.262-2.262H24.389c-.92 0-1.457-1.04-.92-1.788l7.479-10.472c1.07-1.497 0-3.578-1.842-3.578H15.34c-.92 0-1.456-1.04-.92-1.788l9.696-13.575c.213-.297.556-.474.92-.474H53.93c.92 0 1.456 1.04.92 1.788L47.37 13.03c-1.07 1.498 0 3.578 1.842 3.578h11.376c.944 0 1.474 1.088.89 1.831L40.049 45.712z"/></mask><g mask="url(#a)"><g filter="url(#b)"><ellipse cx="5.508" cy="14.704" fill="#eee6ff" rx="5.508" ry="14.704" transform="rotate(269.814 20.96 11.29)scale(-1 1)"/></g><g filter="url(#c)"><ellipse cx="10.399" cy="29.851" fill="#eee6ff" rx="10.399" ry="29.851" transform="rotate(89.814 -16.902 -8.275)scale(1 -1)"/></g><g filter="url(#d)"><ellipse cx="5.508" cy="30.487" fill="#8900ff" rx="5.508" ry="30.487" transform="rotate(89.814 -19.197 -7.127)scale(1 -1)"/></g><g filter="url(#e)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.928 4.177)scale(1 -1)"/></g><g filter="url(#f)"><ellipse cx="5.508" cy="30.599" fill="#8900ff" rx="5.508" ry="30.599" transform="rotate(89.814 -25.738 5.52)scale(1 -1)"/></g><g filter="url(#g)"><ellipse cx="14.072" cy="22.078" fill="#eee6ff" rx="14.072" ry="22.078" transform="rotate(93.35 31.245 55.578)scale(-1 1)"/></g><g filter="url(#h)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#i)"><ellipse cx="3.47" cy="21.501" fill="#8900ff" rx="3.47" ry="21.501" transform="rotate(89.009 35.419 55.202)scale(-1 1)"/></g><g filter="url(#j)"><ellipse cx="14.592" cy="9.743" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(39.51 14.592 9.743)"/></g><g filter="url(#k)"><ellipse cx="61.728" cy="-5.321" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 61.728 -5.32)"/></g><g filter="url(#l)"><ellipse cx="55.618" cy="7.104" fill="#00c2ff" rx="5.971" ry="9.665" transform="rotate(37.892 55.618 7.104)"/></g><g filter="url(#m)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#n)"><ellipse cx="12.326" cy="39.103" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 12.326 39.103)"/></g><g filter="url(#o)"><ellipse cx="49.857" cy="30.678" fill="#8900ff" rx="4.407" ry="29.108" transform="rotate(37.892 49.857 30.678)"/></g><g filter="url(#p)"><ellipse cx="52.623" cy="33.171" fill="#00c2ff" rx="5.971" ry="15.297" transform="rotate(37.892 52.623 33.17)"/></g></g><path d="M6.919 0c-9.198 13.166-9.252 33.575 0 46.789h6.215c-9.25-13.214-9.196-33.623 0-46.789zm62.424 0h-6.215c9.198 13.166 9.252 33.575 0 46.789h6.215c9.25-13.214 9.196-33.623 0-46.789" class="parenthesis"/><defs><filter id="b" width="60.045" height="41.654" x="-5.564" y="16.92" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="c" width="90.34" height="51.437" x="-40.407" y="-6.762" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="d" width="79.355" height="29.4" x="-35.435" y="2.801" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="e" width="79.579" height="29.4" x="-30.84" y="20.8" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="f" width="79.579" height="29.4" x="-29.307" y="21.949" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="g" width="74.749" height="58.852" x="29.961" y="-17.13" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="7.659"/></filter><filter id="h" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="i" width="61.377" height="25.362" x="37.754" y="3.055" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="j" width="56.045" height="63.649" x="-13.43" y="-22.082" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="k" width="54.814" height="64.646" x="34.321" y="-37.644" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="l" width="33.541" height="35.313" x="38.847" y="-10.552" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="m" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="n" width="54.814" height="64.646" x="-15.081" y="6.78" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="o" width="54.814" height="64.646" x="22.45" y="-1.645" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter><filter id="p" width="39.409" height="43.623" x="32.919" y="11.36" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17286" stdDeviation="4.596"/></filter></defs></svg>
+<file path="src/components/layout/AppShell.tsx">
+import type { ReactNode } from "react";
+import { useParams } from "react-router-dom";
+
+import Header from "./Header";
+import Sidebar from "./Sidebar";
+
+interface AppShellProps {
+  title: string;
+  subtitle: string;
+  children: ReactNode;
+}
+
+function AppShell({
+  title,
+  subtitle,
+  children,
+}: AppShellProps) {
+  const params = useParams<{
+    id?: string;
+    auditId?: string;
+    pageId?: string;
+  }>();
+
+  const auditIdValue = params.auditId ?? params.id;
+
+  const auditId = auditIdValue
+    ? Number(auditIdValue)
+    : undefined;
+
+  const pageId = params.pageId
+    ? Number(params.pageId)
+    : undefined;
+
+  const validAuditId =
+    auditId !== undefined &&
+    Number.isInteger(auditId) &&
+    auditId > 0
+      ? auditId
+      : undefined;
+
+  const validPageId =
+    pageId !== undefined &&
+    Number.isInteger(pageId) &&
+    pageId > 0
+      ? pageId
+      : undefined;
+
+  return (
+    <div className="min-h-screen bg-[#F9FAFB]">
+      <Sidebar
+        auditId={validAuditId}
+        pageId={validPageId}
+      />
+
+      <div className="min-h-screen lg:pl-[244px]">
+        <Header
+          title={title}
+          subtitle={subtitle}
+        />
+
+        <main className="min-h-[calc(100vh-74px)]">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+}
+
+export default AppShell;
+</file>
+
+<file path="src/components/layout/Header.tsx">
+import {
+  BarChart3,
+  Bell,
+  FileText,
+  History,
+  Home as HomeIcon,
+  Menu,
+  Search,
+  X,
+} from "lucide-react";
+import { useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
+
+interface HeaderProps {
+  title: string;
+  subtitle: string;
+}
+
+function Header({ title, subtitle }: HeaderProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const params = useParams<{
+    id?: string;
+    auditId?: string;
+    pageId?: string;
+  }>();
+
+  const auditIdValue = params.auditId ?? params.id;
+
+  const auditId = auditIdValue
+    ? Number(auditIdValue)
+    : undefined;
+
+  const pageId = params.pageId
+    ? Number(params.pageId)
+    : undefined;
+
+  const validAuditId =
+    auditId !== undefined &&
+    Number.isInteger(auditId) &&
+    auditId > 0
+      ? auditId
+      : undefined;
+
+  const validPageId =
+    pageId !== undefined &&
+    Number.isInteger(pageId) &&
+    pageId > 0
+      ? pageId
+      : undefined;
+
+  const contextualNavigation = [
+    {
+      label: "Audit Results",
+      to: validAuditId
+        ? `/audits/${validAuditId}`
+        : "#",
+      icon: BarChart3,
+      disabled: !validAuditId,
+    },
+    {
+      label: "Page Details",
+      to:
+        validAuditId && validPageId
+          ? `/audits/${validAuditId}/pages/${validPageId}`
+          : "#",
+      icon: FileText,
+      disabled: !validAuditId || !validPageId,
+    },
+  ];
+
+  return (
+    <>
+      <header className="flex min-h-[74px] items-center justify-between border-b border-[#F3F4F6] bg-white px-4 py-4 md:px-8">
+        <div className="flex min-w-0 items-center gap-3">
+          <button
+            type="button"
+            aria-label={
+              isMenuOpen
+                ? "Close navigation"
+                : "Open navigation"
+            }
+            onClick={() =>
+              setIsMenuOpen((current) => !current)
+            }
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] text-[#6A7282] transition hover:bg-[#F9FAFB] hover:text-[#1E2939] lg:hidden"
+          >
+            {isMenuOpen ? (
+              <X size={18} strokeWidth={1.8} />
+            ) : (
+              <Menu size={18} strokeWidth={1.8} />
+            )}
+          </button>
+
+          <div className="min-w-0">
+            <h1 className="truncate text-base font-semibold leading-6 text-[#1E2939]">
+              {title}
+            </h1>
+
+            <p className="mt-0.5 truncate text-xs leading-4 text-[#99A1AF]">
+              {subtitle}
+            </p>
+          </div>
+        </div>
+
+        <div className="ml-4 flex shrink-0 items-center gap-3">
+          {/* Search */}
+          <div className="relative hidden sm:block">
+            <Search
+              size={14}
+              strokeWidth={1.7}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-[#99A1AF]"
+            />
+
+            <input
+              type="search"
+              placeholder="Search..."
+              aria-label="Search"
+              className="h-[34px] w-[192px] rounded-[10px] border border-[#F3F4F6] bg-[#F9FAFB] py-2 pl-8 pr-4 text-xs text-[#1E2939] outline-none placeholder:text-black/50 focus:border-[#E91E8C]"
+            />
+          </div>
+
+          {/* Notifications */}
+          <button
+            type="button"
+            aria-label="Notifications"
+            className="relative flex h-8 w-8 items-center justify-center rounded-[10px] text-[#99A1AF] transition hover:bg-[#F9FAFB] hover:text-[#1E2939]"
+          >
+            <Bell size={16} strokeWidth={1.7} />
+
+            <span className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-[#E91E8C]" />
+          </button>
+
+          {/* Avatar */}
+          <div
+            aria-label="User profile"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-[#E91E8C]"
+          >
+            <span className="text-xs font-bold leading-4 text-white">
+              Z
+            </span>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile navigation */}
+      {isMenuOpen && (
+        <div className="fixed inset-x-0 top-[74px] z-50 border-b border-[#F3F4F6] bg-white shadow-sm lg:hidden">
+          <nav className="p-4">
+            <div className="space-y-2">
+              {/* Primary navigation */}
+              <NavLink
+                to="/"
+                onClick={() => setIsMenuOpen(false)}
+                className={({ isActive }) =>
+                  [
+                    "flex h-11 items-center gap-3 rounded-[10px] px-4 text-sm transition",
+                    isActive
+                      ? "bg-[#E91E8C] font-medium text-white"
+                      : "text-[#6A7282] hover:bg-[#F9FAFB] hover:text-[#1E2939]",
+                  ].join(" ")
+                }
+              >
+                <HomeIcon size={16} strokeWidth={1.8} />
+                <span>Home</span>
+              </NavLink>
+
+              <NavLink
+                to="/audits"
+                onClick={() => setIsMenuOpen(false)}
+                className={({ isActive }) =>
+                  [
+                    "flex h-11 items-center gap-3 rounded-[10px] px-4 text-sm transition",
+                    isActive
+                      ? "bg-[#E91E8C] font-medium text-white"
+                      : "text-[#6A7282] hover:bg-[#F9FAFB] hover:text-[#1E2939]",
+                  ].join(" ")
+                }
+              >
+                <History size={16} strokeWidth={1.8} />
+                <span>Audit History</span>
+              </NavLink>
+
+              {/* Contextual navigation */}
+              <div className="my-3 border-t border-[#F3F4F6]" />
+
+              <p className="mb-2 px-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#99A1AF]">
+                Current Audit
+              </p>
+
+              {contextualNavigation.map(
+                ({
+                  label,
+                  to,
+                  icon: Icon,
+                  disabled,
+                }) =>
+                  disabled ? (
+                    <div
+                      key={label}
+                      className="flex h-11 cursor-not-allowed items-center gap-3 rounded-[10px] px-4 text-sm text-[#CBD5E1]"
+                    >
+                      <Icon
+                        size={16}
+                        strokeWidth={1.8}
+                      />
+
+                      <span>{label}</span>
+                    </div>
+                  ) : (
+                    <NavLink
+                      key={label}
+                      to={to}
+                      onClick={() =>
+                        setIsMenuOpen(false)
+                      }
+                      className={({ isActive }) =>
+                        [
+                          "flex h-11 items-center gap-3 rounded-[10px] px-4 text-sm transition",
+                          isActive
+                            ? "bg-[#E91E8C] font-medium text-white"
+                            : "text-[#6A7282] hover:bg-[#F9FAFB] hover:text-[#1E2939]",
+                        ].join(" ")
+                      }
+                    >
+                      <Icon
+                        size={16}
+                        strokeWidth={1.8}
+                      />
+
+                      <span>{label}</span>
+                    </NavLink>
+                  ),
+              )}
+            </div>
+          </nav>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default Header;
+</file>
+
+<file path="src/components/layout/Sidebar.tsx">
+import {
+  BarChart3,
+  FileText,
+  History,
+  Home as HomeIcon,
+  Settings,
+} from "lucide-react";
+import { NavLink } from "react-router-dom";
+
+interface SidebarProps {
+  auditId?: number;
+  pageId?: number;
+}
+
+const navigation = [
+  {
+    label: "Home",
+    to: "/",
+    icon: HomeIcon,
+    requiresAudit: false,
+    requiresPage: false,
+  },
+  {
+    label: "Audit History",
+    to: "/audits",
+    icon: History,
+    requiresAudit: false,
+    requiresPage: false,
+  },
+];
+
+function Sidebar({
+  auditId,
+  pageId,
+}: SidebarProps) {
+  const contextualNavigation = [
+    {
+      label: "Audit Results",
+      to: auditId ? `/audits/${auditId}` : "#",
+      icon: BarChart3,
+      disabled: !auditId,
+    },
+    {
+      label: "Page Details",
+      to:
+        auditId && pageId
+          ? `/audits/${auditId}/pages/${pageId}`
+          : "#",
+      icon: FileText,
+      disabled: !auditId || !pageId,
+    },
+  ];
+
+  return (
+    <aside className="fixed inset-y-0 left-0 z-40 hidden w-[244px] border-r border-[#F3F4F6] bg-[#F9FAFB] lg:flex lg:flex-col">
+      {/* Branding */}
+      <div className="flex h-[90px] items-center px-8">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-[#E91E8C]">
+            <span className="text-sm font-bold text-white">
+              Z
+            </span>
+          </div>
+
+          <div className="leading-none">
+            <div className="text-[13px] font-bold tracking-[0.02em] text-[#1E2939]">
+              ZERDA
+            </div>
+
+            <div className="mt-0.5 text-[9px] font-medium tracking-[0.18em] text-[#99A1AF]">
+              ACADEMY
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Primary navigation */}
+      <nav className="px-6">
+        <div className="space-y-2">
+          {navigation.map(
+            ({ label, to, icon: Icon }) => (
+              <NavLink
+                key={label}
+                to={to}
+                className={({ isActive }) =>
+                  [
+                    "flex h-10 items-center gap-3 rounded-[10px] px-3 text-sm transition",
+                    isActive
+                      ? "bg-[#E91E8C] font-medium text-white shadow-sm"
+                      : "text-[#6A7282] hover:bg-white hover:text-[#1E2939]",
+                  ].join(" ")
+                }
+              >
+                <Icon
+                  size={16}
+                  strokeWidth={1.8}
+                />
+
+                <span>{label}</span>
+              </NavLink>
+            ),
+          )}
+        </div>
+
+        {/* Contextual navigation */}
+        <div className="mt-4 border-t border-[#F3F4F6] pt-4">
+          <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#99A1AF]">
+            Current Audit
+          </p>
+
+          <div className="space-y-2">
+            {contextualNavigation.map(
+              ({
+                label,
+                to,
+                icon: Icon,
+                disabled,
+              }) =>
+                disabled ? (
+                  <div
+                    key={label}
+                    className="flex h-10 cursor-not-allowed items-center gap-3 rounded-[10px] px-3 text-sm text-[#CBD5E1]"
+                    title={
+                      label === "Audit Results"
+                        ? "Open an audit first"
+                        : "Open a page from an audit first"
+                    }
+                  >
+                    <Icon
+                      size={16}
+                      strokeWidth={1.8}
+                    />
+
+                    <span>{label}</span>
+                  </div>
+                ) : (
+                  <NavLink
+                    key={label}
+                    to={to}
+                    className={({ isActive }) =>
+                      [
+                        "flex h-10 items-center gap-3 rounded-[10px] px-3 text-sm transition",
+                        isActive
+                          ? "bg-[#E91E8C] font-medium text-white shadow-sm"
+                          : "text-[#6A7282] hover:bg-white hover:text-[#1E2939]",
+                      ].join(" ")
+                    }
+                  >
+                    <Icon
+                      size={16}
+                      strokeWidth={1.8}
+                    />
+
+                    <span>{label}</span>
+                  </NavLink>
+                ),
+            )}
+          </div>
+        </div>
+      </nav>
+
+      {/* Settings */}
+      <div className="mt-auto px-6 pb-8">
+        <NavLink
+          to="/settings"
+          className="flex h-10 items-center gap-3 rounded-[10px] px-3 text-sm text-[#6A7282] transition hover:bg-white hover:text-[#1E2939]"
+        >
+          <Settings
+            size={16}
+            strokeWidth={1.8}
+          />
+
+          <span>Settings</span>
+        </NavLink>
+      </div>
+    </aside>
+  );
+}
+
+export default Sidebar;
 </file>
 
 <file path="src/lib/utils.ts">
 
-</file>
-
-<file path="src/pages/AuditHistory.tsx">
-function AuditHistory() {
-  return <div>Audit History</div>;
-}
-
-export default AuditHistory;
-</file>
-
-<file path="src/pages/AuditResult.tsx">
-function AuditResult() {
-  return <div>Audit Result</div>;
-}
-
-export default AuditResult;
-</file>
-
-<file path="src/pages/Home.tsx">
-function Home() {
-  return <div>Home</div>;
-}
-
-export default Home;
-</file>
-
-<file path="src/pages/PageDetails.tsx">
-function PageDetails() {
-  return <div>Page Details</div>;
-}
-
-export default PageDetails;
-</file>
-
-<file path="src/services/api.ts">
-
-</file>
-
-<file path="src/App.css">
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
-}
 </file>
 
 <file path="src/App.tsx">
@@ -409,33 +782,6 @@ createRoot(document.getElementById('root')!).render(
 )
 </file>
 
-<file path=".gitignore">
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-</file>
-
 <file path=".oxlintrc.json">
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
@@ -445,22 +791,6 @@ dist-ssr
     "react/only-export-components": ["warn", { "allowConstantExport": true }]
   }
 }
-</file>
-
-<file path="index.html">
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>seo-audit-frontend</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
 </file>
 
 <file path="package.json">
@@ -606,6 +936,2301 @@ export default defineConfig({
     tailwindcss(),
   ],
 });
+</file>
+
+<file path="src/pages/AuditHistory.tsx">
+import {
+  ArrowUpRight,
+  CalendarDays,
+  CheckCircle2,
+  FileSearch,
+  
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import AppShell from "../components/layout/AppShell";
+import StatusState from "../components/layout/ui/audit/StatusState";
+import {
+  getWebsiteAudits,
+  type WebsiteAudit,
+} from "../services/api";
+
+function getScoreClass(score: number) {
+  if (score >= 80) {
+    return "bg-[#ECFDF3] text-[#16A34A]";
+  }
+
+  if (score >= 60) {
+    return "bg-[#FFF7E6] text-[#D97706]";
+  }
+
+  return "bg-[#FEF2F2] text-[#DC2626]";
+}
+
+function formatDate(value: string) {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(value));
+}
+
+function AuditHistory() {
+  const navigate = useNavigate();
+
+  const [audits, setAudits] = useState<WebsiteAudit[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function loadAudits() {
+      try {
+        setError("");
+
+        const result = await getWebsiteAudits();
+
+        setAudits(result);
+      } catch (error) {
+        setError(
+          error instanceof Error
+            ? error.message
+            : "Failed to load audit history.",
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    void loadAudits();
+  }, []);
+
+  return (
+    <AppShell
+      title="Audit History"
+      subtitle="All your past SEO audits in one place"
+    >
+      <div className="mx-auto w-full max-w-[975px] px-4 py-5 md:px-6 md:py-8">
+        {/* Page intro */}
+        <div className="mb-5 flex items-end justify-between gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full bg-[rgba(233,30,140,0.09)] px-3 py-1">
+              <CalendarDays
+                size={12}
+                className="text-[#E91E8C]"
+              />
+
+              <span className="text-xs font-semibold text-[#E91E8C]">
+                Audit History
+              </span>
+            </div>
+
+            <h2 className="mt-3 text-2xl font-bold text-[#1E2939]">
+              Your previous audits
+            </h2>
+
+            <p className="mt-2 max-w-[600px] text-sm text-[#6A7282]">
+              Review previous website analyses and open any audit
+              for a detailed breakdown.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            className="hidden shrink-0 rounded-[12px] bg-[#E91E8C] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#D91A80] sm:block"
+          >
+            New Audit
+          </button>
+        </div>
+
+        {/* History card */}
+        <section className="overflow-hidden rounded-2xl border border-[#F3F4F6] bg-white">
+          <div className="flex items-center justify-between border-b border-[#F3F4F6] px-5 py-4 md:px-6">
+            <div className="flex items-center gap-2">
+              <FileSearch
+                size={16}
+                className="text-[#E91E8C]"
+              />
+
+              <h3 className="text-sm font-semibold text-[#364153]">
+                Previous Audits
+              </h3>
+            </div>
+
+            <span className="rounded-full bg-[#F9FAFB] px-3 py-1 text-xs text-[#6A7282]">
+              {audits.length} audits
+            </span>
+          </div>
+
+          {isLoading && (
+            <StatusState
+              variant="loading"
+              title="Loading audit history"
+              description="Fetching your previous website audits."
+            />
+          )}
+
+          {!isLoading && error && (
+            <StatusState
+              variant="error"
+              title="Unable to load audit history"
+              description={error}
+              actionLabel="Try Again"
+              onAction={() => window.location.reload()}
+            />
+          )}
+
+          {!isLoading && !error && audits.length === 0 && (
+            <StatusState
+              variant="empty"
+              title="No audits yet"
+              description="Start your first website audit and it will appear here."
+              actionLabel="Start an Audit"
+              onAction={() => navigate("/")}
+            />
+          )}
+
+          {!isLoading && !error && audits.length > 0 && (
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[820px]">
+                <thead>
+                  <tr className="border-b border-[#F3F4F6] bg-[#F9FAFB]">
+                    <th className="px-6 py-3.5 text-left text-xs font-medium text-[#99A1AF]">
+                      Website
+                    </th>
+
+                    <th className="px-6 py-3.5 text-left text-xs font-medium text-[#99A1AF]">
+                      Date
+                    </th>
+
+                    <th className="px-6 py-3.5 text-left text-xs font-medium text-[#99A1AF]">
+                      Score
+                    </th>
+
+                    <th className="px-6 py-3.5 text-left text-xs font-medium text-[#99A1AF]">
+                      Pages
+                    </th>
+
+                    <th className="px-6 py-3.5 text-left text-xs font-medium text-[#99A1AF]">
+                      Issues
+                    </th>
+
+                    <th className="px-6 py-3.5 text-left text-xs font-medium text-[#99A1AF]">
+                      Status
+                    </th>
+
+                    <th className="px-6 py-3.5" />
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {audits.map((audit) => (
+                    <tr
+                      key={audit.id}
+                      className="border-b border-[#F3F4F6] last:border-b-0 hover:bg-[#FCFCFD]"
+                    >
+                      <td className="max-w-[270px] px-6 py-4">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            navigate(`/audits/${audit.id}`)
+                          }
+                          className="block max-w-full truncate text-left text-sm font-medium text-[#364153] hover:text-[#E91E8C]"
+                          title={audit.url}
+                        >
+                          {audit.url}
+                        </button>
+                      </td>
+
+                      <td className="whitespace-nowrap px-6 py-4 text-xs text-[#6A7282]">
+                        {formatDate(audit.createdAt)}
+                      </td>
+
+                      <td className="px-6 py-4">
+                        <span
+                          className={`inline-flex min-w-9 items-center justify-center rounded-full px-2.5 py-1 text-xs font-semibold ${getScoreClass(
+                            audit.averageScore,
+                          )}`}
+                        >
+                          {audit.averageScore}
+                        </span>
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-[#6A7282]">
+                        {audit.pagesCrawled}
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-[#6A7282]">
+                        {audit.issuesFound ?? 0}
+                      </td>
+
+                      <td className="px-6 py-4">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#ECFDF3] px-3 py-1 text-xs font-medium text-[#16A34A]">
+                          <CheckCircle2 size={12} />
+                          {audit.status ?? "Completed"}
+                        </span>
+                      </td>
+
+                      <td className="px-6 py-4 text-right">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            navigate(`/audits/${audit.id}`)
+                          }
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-[9px] text-[#99A1AF] transition hover:bg-[#F9FAFB] hover:text-[#E91E8C]"
+                          aria-label={`Open ${audit.url}`}
+                        >
+                          <ArrowUpRight
+                            size={15}
+                            strokeWidth={1.8}
+                          />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+
+        {/* Mobile action */}
+        <button
+          type="button"
+          onClick={() => navigate("/")}
+          className="mt-4 w-full rounded-[12px] bg-[#E91E8C] px-4 py-2.5 text-sm font-semibold text-white sm:hidden"
+        >
+          New Audit
+        </button>
+      </div>
+    </AppShell>
+  );
+}
+
+export default AuditHistory;
+</file>
+
+<file path="src/pages/AuditResult.tsx">
+import {
+  AlertTriangle,
+  ArrowLeft,
+  CheckCircle2,
+  Clock3,
+  ExternalLink,
+  Gauge,
+  Globe,
+ 
+} from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import AppShell from "../components/layout/AppShell";
+import StatusState from "../components/layout/ui/audit/StatusState";
+import {
+  getWebsiteAuditById,
+  type WebsiteAuditDetails,
+} from "../services/api";
+
+function getScoreClass(score: number) {
+  if (score >= 80) {
+    return "bg-[#F0FDF4] text-[#16A34A]";
+  }
+
+  if (score >= 60) {
+    return "bg-[#FFF7E6] text-[#D97706]";
+  }
+
+  return "bg-[#FEF2F2] text-[#DC2626]";
+}
+
+function getSeverityClass(severity: string) {
+  switch (severity.toLowerCase()) {
+    case "high":
+    case "critical":
+      return "bg-[#FEF2F2] text-[#DC2626]";
+
+    case "medium":
+      return "bg-[#FFF7E6] text-[#D97706]";
+
+    default:
+      return "bg-[#EFF6FF] text-[#2563EB]";
+  }
+}
+
+function formatDate(value: string) {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(value));
+}
+
+function formatDuration(milliseconds: number) {
+  if (milliseconds < 1000) {
+    return `${milliseconds} ms`;
+  }
+
+  return `${(milliseconds / 1000).toFixed(1)} s`;
+}
+
+function AuditResult() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const [audit, setAudit] =
+    useState<WebsiteAuditDetails | null>(null);
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function loadAudit() {
+      if (!id) {
+        setError("Invalid audit identifier.");
+        setIsLoading(false);
+        return;
+      }
+
+      const auditId = Number(id);
+
+      if (!Number.isInteger(auditId) || auditId <= 0) {
+        setError("Invalid audit identifier.");
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const result = await getWebsiteAuditById(auditId);
+
+        setAudit(result);
+      } catch (error) {
+        setError(
+          error instanceof Error
+            ? error.message
+            : "Failed to load website audit.",
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    void loadAudit();
+  }, [id]);
+
+  const insights = useMemo(() => {
+    if (!audit) {
+      return [];
+    }
+
+    return audit.pageAudits.flatMap((page) =>
+      page.recommendations.map((recommendation) => ({
+        pageId: page.id,
+        pageUrl: page.url,
+        score: page.score,
+        issue: recommendation.message,
+        type: recommendation.type,
+        severity: recommendation.severity,
+      })),
+    );
+  }, [audit]);
+
+  const issueCount = insights.length;
+
+  if (isLoading) {
+    return (
+      <AppShell
+        title="Audit Result"
+        subtitle="Website SEO audit results"
+      >
+        <div className="mx-auto w-full max-w-[975px] px-4 py-8 md:px-6">
+          <section className="rounded-2xl border border-[#F3F4F6] bg-white">
+            <StatusState
+              variant="loading"
+              title="Loading audit"
+              description="Fetching the website audit results."
+            />
+          </section>
+        </div>
+      </AppShell>
+    );
+  }
+
+  if (error || !audit) {
+    return (
+      <AppShell
+        title="Audit Result"
+        subtitle="Website SEO audit results"
+      >
+        <div className="mx-auto w-full max-w-[975px] px-4 py-8 md:px-6">
+          <section className="rounded-2xl border border-[#F3F4F6] bg-white">
+            <StatusState
+              variant="error"
+              title="Unable to load audit"
+              description={
+                error ||
+                "The requested audit could not be found."
+              }
+              actionLabel="Back to Home"
+              onAction={() => navigate("/")}
+            />
+          </section>
+        </div>
+      </AppShell>
+    );
+  }
+
+  if (audit.pageAudits.length === 0) {
+    return (
+      <AppShell
+        title="Audit Result"
+        subtitle="Website SEO audit results"
+      >
+        <div className="mx-auto w-full max-w-[975px] px-4 py-8 md:px-6">
+          <section className="rounded-2xl border border-[#F3F4F6] bg-white">
+            <StatusState
+              variant="empty"
+              title="No pages were crawled"
+              description="The crawler completed the audit but did not find any pages that could be analyzed."
+              actionLabel="Back to Home"
+              onAction={() => navigate("/")}
+            />
+          </section>
+        </div>
+      </AppShell>
+    );
+  }
+
+  return (
+    <AppShell
+      title="Audit Result"
+      subtitle="Website SEO audit results"
+    >
+      <div className="mx-auto w-full max-w-[975px] px-4 py-5 md:px-6 md:py-6">
+        {/* Audit heading */}
+        <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+          <div className="min-w-0">
+            <button
+              type="button"
+              onClick={() => navigate("/")}
+              className="mb-2 inline-flex items-center gap-1.5 text-xs font-medium text-[#99A1AF] transition hover:text-[#E91E8C]"
+            >
+              <ArrowLeft size={14} />
+              Back to Home
+            </button>
+
+            <h2 className="truncate text-lg font-bold text-[#1E2939]">
+              {audit.url}
+            </h2>
+
+            <p className="mt-1 text-xs text-[#99A1AF]">
+              Audited {formatDate(audit.createdAt)}
+            </p>
+          </div>
+
+          <div className="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#F0FDF4] px-3 py-1.5 text-xs font-medium text-[#16A34A]">
+            <CheckCircle2 size={13} />
+            Completed
+          </div>
+        </div>
+
+        {/* Overview */}
+        <section className="rounded-2xl border border-[#F3F4F6] bg-white p-5 md:p-6">
+          <div className="grid gap-5 lg:grid-cols-[1.1fr_1fr]">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[rgba(233,30,140,0.09)] px-3 py-1 text-xs font-semibold text-[#E91E8C]">
+                <Gauge size={12} />
+                SEO Performance
+              </span>
+
+              <div className="mt-4 flex items-end gap-2">
+                <span className="text-5xl font-bold leading-none text-[#1E2939]">
+                  {audit.averageScore}
+                </span>
+
+                <span className="pb-1 text-sm text-[#99A1AF]">
+                  / 100
+                </span>
+              </div>
+
+              <p className="mt-2 max-w-md text-sm leading-6 text-[#6A7282]">
+                Average SEO score across the pages included in
+                this website audit.
+              </p>
+
+              <div className="mt-4 h-2 max-w-md overflow-hidden rounded-full bg-[#F3F4F6]">
+                <div
+                  className="h-full rounded-full bg-[#E91E8C]"
+                  style={{
+                    width: `${Math.max(
+                      0,
+                      Math.min(audit.averageScore, 100),
+                    )}%`,
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <SummaryCard
+                icon={Globe}
+                label="Pages Crawled"
+                value={audit.pagesCrawled}
+              />
+
+              <SummaryCard
+                icon={AlertTriangle}
+                label="Issues Found"
+                value={issueCount}
+              />
+
+              <SummaryCard
+                icon={Gauge}
+                label="Highest Score"
+                value={audit.highestScore}
+              />
+
+              <SummaryCard
+                icon={Clock3}
+                label="Crawl Time"
+                value={formatDuration(audit.crawlTimeMs)}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Audit Insights */}
+        <section className="mt-6 overflow-hidden rounded-2xl border border-[#F3F4F6] bg-white">
+          <div className="flex items-center justify-between border-b border-[#F3F4F6] px-6 py-4">
+            <h3 className="text-sm font-semibold text-[#364153]">
+              Audit Insights
+            </h3>
+
+            <button
+              type="button"
+              onClick={() => navigate(`/audits/${audit.id}`)}
+              className="text-xs font-medium text-[#E91E8C]"
+            >
+              View page details →
+            </button>
+          </div>
+
+          {insights.length === 0 ? (
+            <StatusState
+              variant="success"
+              title="No SEO issues found"
+              description="All analyzed pages passed the current recommendation checks."
+            />
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[760px]">
+                <thead>
+                  <tr className="border-b border-[#F3F4F6] bg-[#F9FAFB]">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-[#99A1AF]">
+                      Page
+                    </th>
+
+                    <th className="px-6 py-3 text-left text-xs font-medium text-[#99A1AF]">
+                      Issue
+                    </th>
+
+                    <th className="px-6 py-3 text-left text-xs font-medium text-[#99A1AF]">
+                      Type
+                    </th>
+
+                    <th className="px-6 py-3 text-left text-xs font-medium text-[#99A1AF]">
+                      Severity
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {insights.map((insight, index) => (
+                    <tr
+                      key={`${insight.pageId}-${insight.type}-${index}`}
+                      className="border-b border-[#F3F4F6] last:border-b-0"
+                    >
+                      <td className="max-w-[170px] px-6 py-4">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            navigate(
+                              `/audits/${audit.id}/pages/${insight.pageId}`,
+                            )
+                          }
+                          className="block max-w-full truncate text-left text-xs font-medium text-[#364153] hover:text-[#E91E8C]"
+                          title={insight.pageUrl}
+                        >
+                          {insight.pageUrl}
+                        </button>
+                      </td>
+
+                      <td className="max-w-[290px] px-6 py-4">
+                        <div className="text-xs leading-5 text-[#364153]">
+                          {insight.issue}
+                        </div>
+                      </td>
+
+                      <td className="px-6 py-4">
+                        <span className="inline-flex rounded-[8px] bg-[#F9FAFB] px-2.5 py-1 text-[11px] text-[#6A7282]">
+                          {insight.type}
+                        </span>
+                      </td>
+
+                      <td className="px-6 py-4">
+                        <span
+                          className={`inline-flex rounded-full px-2.5 py-1 text-[11px] font-medium ${getSeverityClass(
+                            insight.severity,
+                          )}`}
+                        >
+                          {insight.severity}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+
+        {/* Page summary */}
+        <section className="mt-6 rounded-2xl border border-[#F3F4F6] bg-white p-5 md:p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-sm font-semibold text-[#364153]">
+                Pages
+              </h3>
+
+              <p className="mt-1 text-xs text-[#99A1AF]">
+                Pages included in this audit
+              </p>
+            </div>
+
+            <span className="rounded-full bg-[#F9FAFB] px-3 py-1 text-xs text-[#6A7282]">
+              {audit.pageAudits.length} pages
+            </span>
+          </div>
+
+          <div className="mt-4 divide-y divide-[#F3F4F6]">
+            {audit.pageAudits.map((page) => (
+              <div
+                key={page.id}
+                className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <div className="min-w-0">
+                  <div className="truncate text-sm font-medium text-[#364153]">
+                    {page.url}
+                  </div>
+
+                  <div className="mt-1 text-xs text-[#99A1AF]">
+                    Depth {page.depth} ·{" "}
+                    {page.recommendations.length} issues
+                  </div>
+                </div>
+
+                <div className="flex shrink-0 items-center gap-3">
+                  <span
+                    className={`rounded-full px-2.5 py-1 text-xs font-semibold ${getScoreClass(
+                      page.score,
+                    )}`}
+                  >
+                    {page.score}
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      navigate(
+                        `/audits/${audit.id}/pages/${page.id}`,
+                      )
+                    }
+                    className="inline-flex items-center gap-1 text-xs font-medium text-[#E91E8C]"
+                  >
+                    Details
+                    <ExternalLink size={13} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </AppShell>
+  );
+}
+
+interface SummaryCardProps {
+  icon: typeof Gauge;
+  label: string;
+  value: string | number;
+}
+
+function SummaryCard({
+  icon: Icon,
+  label,
+  value,
+}: SummaryCardProps) {
+  return (
+    <div className="rounded-xl border border-[#F3F4F6] bg-[#FCFCFD] p-4">
+      <div className="flex h-8 w-8 items-center justify-center rounded-[9px] bg-white">
+        <Icon
+          size={15}
+          strokeWidth={1.7}
+          className="text-[#E91E8C]"
+        />
+      </div>
+
+      <div className="mt-3 text-lg font-bold text-[#1E2939]">
+        {value}
+      </div>
+
+      <div className="mt-1 text-xs text-[#99A1AF]">
+        {label}
+      </div>
+    </div>
+  );
+}
+
+export default AuditResult;
+</file>
+
+<file path="src/pages/PageDetails.tsx">
+import {
+  
+  ArrowLeft,
+  
+  ExternalLink,
+  Gauge,
+  Globe,
+  Image,
+  Link2,
+  Search,
+  ShieldCheck,
+} from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import AppShell from "../components/layout/AppShell";
+import StatusState from "../components/layout/ui/audit/StatusState";
+import {
+  getWebsiteAuditById,
+  type PageAudit,
+  type WebsiteAuditDetails,
+} from "../services/api";
+
+function getScoreTone(score: number) {
+  if (score >= 80) {
+    return {
+      text: "text-[#16A34A]",
+      background: "bg-[#F0FDF4]",
+      bar: "bg-[#22C55E]",
+      label: "Good",
+    };
+  }
+
+  if (score >= 60) {
+    return {
+      text: "text-[#D97706]",
+      background: "bg-[#FFF7E6]",
+      bar: "bg-[#F59E0B]",
+      label: "Needs Improvement",
+    };
+  }
+
+  return {
+    text: "text-[#DC2626]",
+    background: "bg-[#FEF2F2]",
+    bar: "bg-[#EF4444]",
+    label: "Poor",
+  };
+}
+
+function getSeverityClass(severity: string) {
+  switch (severity.toLowerCase()) {
+    case "high":
+    case "critical":
+      return "bg-[#FEF2F2] text-[#DC2626]";
+
+    case "medium":
+      return "bg-[#FFF7E6] text-[#D97706]";
+
+    default:
+      return "bg-[#EFF6FF] text-[#2563EB]";
+  }
+}
+
+function formatValue(value: unknown) {
+  if (typeof value === "boolean") {
+    return value ? "Yes" : "No";
+  }
+
+  if (value === null || value === undefined || value === "") {
+    return "—";
+  }
+
+  return String(value);
+}
+
+function PageDetails() {
+  const { auditId, pageId } = useParams();
+  const navigate = useNavigate();
+
+  const [audit, setAudit] =
+    useState<WebsiteAuditDetails | null>(null);
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function loadPage() {
+      if (!auditId || !pageId) {
+        setError("Invalid audit or page identifier.");
+        setIsLoading(false);
+        return;
+      }
+
+      const parsedAuditId = Number(auditId);
+      const parsedPageId = Number(pageId);
+
+      if (
+        !Number.isInteger(parsedAuditId) ||
+        parsedAuditId <= 0 ||
+        !Number.isInteger(parsedPageId) ||
+        parsedPageId <= 0
+      ) {
+        setError("Invalid audit or page identifier.");
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const result =
+          await getWebsiteAuditById(parsedAuditId);
+
+        setAudit(result);
+      } catch (error) {
+        setError(
+          error instanceof Error
+            ? error.message
+            : "Failed to load page details.",
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    void loadPage();
+  }, [auditId, pageId]);
+
+  const page = useMemo<PageAudit | null>(() => {
+    if (!audit || !pageId) {
+      return null;
+    }
+
+    const parsedPageId = Number(pageId);
+
+    return (
+      audit.pageAudits.find(
+        (item) => item.id === parsedPageId,
+      ) ?? null
+    );
+  }, [audit, pageId]);
+
+  if (isLoading) {
+    return (
+      <AppShell
+        title="Page Details"
+        subtitle="Drill down into individual page performance"
+      >
+        <div className="mx-auto w-full max-w-[975px] px-4 py-8 md:px-6">
+          <section className="rounded-2xl border border-[#F3F4F6] bg-white">
+            <StatusState
+              variant="loading"
+              title="Loading page details"
+              description="Fetching the selected page analysis."
+            />
+          </section>
+        </div>
+      </AppShell>
+    );
+  }
+
+  if (error || !audit || !page) {
+    return (
+      <AppShell
+        title="Page Details"
+        subtitle="Drill down into individual page performance"
+      >
+        <div className="mx-auto w-full max-w-[975px] px-4 py-8 md:px-6">
+          <section className="rounded-2xl border border-[#F3F4F6] bg-white">
+            <StatusState
+              variant="error"
+              title="Page not found"
+              description={
+                error ||
+                "The selected page audit could not be found."
+              }
+              actionLabel="Back to Audit"
+              onAction={() =>
+                navigate(`/audits/${auditId}`)
+              }
+            />
+          </section>
+        </div>
+      </AppShell>
+    );
+  }
+
+  const scoreTone = getScoreTone(page.score);
+  const analysis = page.analysis;
+
+  const stats = [
+    {
+      label: "Issues",
+      value: page.recommendations.length,
+    },
+    {
+      label: "HTTP Status",
+      value: page.statusCode,
+    },
+    {
+      label: "Crawl Depth",
+      value: page.depth,
+    },
+    {
+      label: "HTML Size",
+      value: `${Math.round(page.htmlLength / 1024)} KB`,
+    },
+  ];
+
+  return (
+    <AppShell
+      title="Page Details"
+      subtitle="Drill down into individual page performance"
+    >
+      <div className="mx-auto w-full max-w-[975px] px-4 py-5 md:px-6 md:py-8">
+        {/* Page identity */}
+        <div className="mb-5">
+          <button
+            type="button"
+            onClick={() =>
+              navigate(`/audits/${audit.id}`)
+            }
+            className="mb-3 inline-flex items-center gap-1.5 text-xs font-medium text-[#99A1AF] transition hover:text-[#E91E8C]"
+          >
+            <ArrowLeft size={14} />
+            Back to Audit
+          </button>
+
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+            <div className="min-w-0">
+              <h2 className="break-all text-lg font-bold text-[#1E2939]">
+                {page.url}
+              </h2>
+
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-[#99A1AF]">
+                <span>Depth {page.depth}</span>
+                <span>•</span>
+                <span>HTTP {page.statusCode}</span>
+                <span>•</span>
+                <span>
+                  {page.reachable
+                    ? "Reachable"
+                    : "Unreachable"}
+                </span>
+              </div>
+            </div>
+
+            <a
+              href={page.url}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex w-fit items-center gap-1.5 rounded-[10px] border border-[#E5E7EB] bg-white px-3 py-2 text-xs font-medium text-[#6A7282] hover:text-[#E91E8C]"
+            >
+              Open page
+              <ExternalLink size={13} />
+            </a>
+          </div>
+        </div>
+
+        {/* Score */}
+        <section className="grid gap-4 lg:grid-cols-[240px_1fr]">
+          <div className="rounded-2xl border border-[#F3F4F6] bg-white p-6">
+            <div className="text-xs font-medium text-[#99A1AF]">
+              SEO Score
+            </div>
+
+            <div className="mt-2 flex items-baseline gap-1">
+              <span className="text-5xl font-bold leading-none text-[#1E2939]">
+                {page.score}
+              </span>
+
+              <span className="text-sm text-[#99A1AF]">
+                / 100
+              </span>
+            </div>
+
+            <div
+              className={`mt-3 inline-flex rounded-full px-3 py-1 text-xs font-semibold ${scoreTone.background} ${scoreTone.text}`}
+            >
+              {scoreTone.label}
+            </div>
+
+            <div className="mt-5 h-2 overflow-hidden rounded-full bg-[#F3F4F6]">
+              <div
+                className={`h-full rounded-full ${scoreTone.bar}`}
+                style={{
+                  width: `${Math.max(
+                    0,
+                    Math.min(page.score, 100),
+                  )}%`,
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-[#F3F4F6] bg-white p-6">
+            <div className="flex items-center gap-2">
+              <Gauge
+                size={16}
+                className="text-[#E91E8C]"
+              />
+
+              <h3 className="text-sm font-semibold text-[#364153]">
+                Page Overview
+              </h3>
+            </div>
+
+            <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-xl bg-[#F9FAFB] p-3"
+                >
+                  <div className="text-xs text-[#99A1AF]">
+                    {stat.label}
+                  </div>
+
+                  <div className="mt-1 text-base font-bold text-[#1E2939]">
+                    {stat.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SEO metrics */}
+        <section className="mt-5 rounded-2xl border border-[#F3F4F6] bg-white">
+          <div className="border-b border-[#F3F4F6] px-5 py-4">
+            <div className="flex items-center gap-2">
+              <Search
+                size={16}
+                className="text-[#E91E8C]"
+              />
+
+              <h3 className="text-sm font-semibold text-[#364153]">
+                SEO Metrics
+              </h3>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2">
+            <MetricRow
+              label="Title"
+              value={formatValue(analysis.title)}
+            />
+
+            <MetricRow
+              label="Title Length"
+              value={formatValue(analysis.titleLength)}
+            />
+
+            <MetricRow
+              label="Meta Description"
+              value={formatValue(analysis.metaDescription)}
+            />
+
+            <MetricRow
+              label="Meta Description Length"
+              value={formatValue(
+                analysis.metaDescriptionLength,
+              )}
+            />
+
+            <MetricRow
+              label="H1 Count"
+              value={formatValue(analysis.h1Count)}
+            />
+
+            <MetricRow
+              label="H2 Count"
+              value={formatValue(analysis.h2Count)}
+            />
+
+            <MetricRow
+              label="Canonical"
+              value={formatValue(analysis.hasCanonical)}
+            />
+
+            <MetricRow
+              label="Viewport"
+              value={formatValue(analysis.hasViewport)}
+            />
+          </div>
+        </section>
+
+        {/* Images and links */}
+        <div className="mt-5 grid gap-5 md:grid-cols-2">
+          <section className="rounded-2xl border border-[#F3F4F6] bg-white">
+            <div className="border-b border-[#F3F4F6] px-5 py-4">
+              <div className="flex items-center gap-2">
+                <Image
+                  size={16}
+                  className="text-[#E91E8C]"
+                />
+
+                <h3 className="text-sm font-semibold text-[#364153]">
+                  Images
+                </h3>
+              </div>
+            </div>
+
+            <div className="p-5">
+              <div className="grid grid-cols-2 gap-3">
+                <MiniMetric
+                  label="Images"
+                  value={analysis.imageCount}
+                />
+
+                <MiniMetric
+                  label="Missing Alt"
+                  value={analysis.imagesWithoutAlt}
+                />
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-2xl border border-[#F3F4F6] bg-white">
+            <div className="border-b border-[#F3F4F6] px-5 py-4">
+              <div className="flex items-center gap-2">
+                <Link2
+                  size={16}
+                  className="text-[#E91E8C]"
+                />
+
+                <h3 className="text-sm font-semibold text-[#364153]">
+                  Links
+                </h3>
+              </div>
+            </div>
+
+            <div className="p-5">
+              <div className="grid grid-cols-2 gap-3">
+                <MiniMetric
+                  label="Total"
+                  value={analysis.totalLinks}
+                />
+
+                <MiniMetric
+                  label="Internal"
+                  value={analysis.internalLinksCount}
+                />
+
+                <MiniMetric
+                  label="External"
+                  value={analysis.externalLinksCount}
+                />
+
+                <MiniMetric
+                  label="No Text"
+                  value={analysis.linksWithoutText}
+                />
+              </div>
+            </div>
+          </section>
+        </div>
+
+        {/* Site files and technical checks */}
+        <section className="mt-5 rounded-2xl border border-[#F3F4F6] bg-white">
+          <div className="border-b border-[#F3F4F6] px-5 py-4">
+            <div className="flex items-center gap-2">
+              <Globe
+                size={16}
+                className="text-[#E91E8C]"
+              />
+
+              <h3 className="text-sm font-semibold text-[#364153]">
+                Site Files & Technical Checks
+              </h3>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2">
+            <MetricRow
+              label="robots.txt"
+              value={
+                page.siteFiles
+                  ? page.siteFiles.robotsTxt.exists
+                    ? "Available"
+                    : "Missing"
+                  : "—"
+              }
+            />
+
+            <MetricRow
+              label="sitemap.xml"
+              value={
+                page.siteFiles
+                  ? page.siteFiles.sitemapXml.exists
+                    ? "Available"
+                    : "Missing"
+                  : "—"
+              }
+            />
+
+            <MetricRow
+              label="Reachable"
+              value={
+                page.reachable ? "Yes" : "No"
+              }
+            />
+
+            <MetricRow
+              label="HTTP Status"
+              value={page.statusCode}
+            />
+          </div>
+        </section>
+
+        {/* Recommendations */}
+        <section className="mt-5 overflow-hidden rounded-2xl border border-[#F3F4F6] bg-white">
+          <div className="flex items-center justify-between border-b border-[#F3F4F6] px-5 py-4">
+            <div className="flex items-center gap-2">
+              <ShieldCheck
+                size={16}
+                className="text-[#E91E8C]"
+              />
+
+              <h3 className="text-sm font-semibold text-[#364153]">
+                Recommendations
+              </h3>
+            </div>
+
+            <span className="rounded-full bg-[#F9FAFB] px-2.5 py-1 text-[10px] text-[#6A7282]">
+              {page.recommendations.length}
+            </span>
+          </div>
+
+          {page.recommendations.length === 0 ? (
+            <StatusState
+              variant="success"
+              title="No issues detected"
+              description="This page passed all current SEO recommendation checks."
+            />
+          ) : (
+            <div className="divide-y divide-[#F3F4F6]">
+              {page.recommendations.map(
+                (recommendation, index) => (
+                  <div
+                    key={`${recommendation.type}-${index}`}
+                    className="p-5"
+                  >
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h4 className="text-sm font-semibold text-[#364153]">
+                            {recommendation.message}
+                          </h4>
+
+                          <span className="rounded-[8px] bg-[#F9FAFB] px-2 py-1 text-[10px] text-[#6A7282]">
+                            {recommendation.type}
+                          </span>
+                        </div>
+
+                        <p className="mt-2 max-w-2xl text-xs leading-5 text-[#6A7282]">
+                          {recommendation.recommendation}
+                        </p>
+                      </div>
+
+                      <span
+                        className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold ${getSeverityClass(
+                          recommendation.severity,
+                        )}`}
+                      >
+                        {recommendation.severity}
+                      </span>
+                    </div>
+                  </div>
+                ),
+              )}
+            </div>
+          )}
+        </section>
+      </div>
+    </AppShell>
+  );
+}
+
+interface MetricRowProps {
+  label: string;
+  value: string | number;
+}
+
+function MetricRow({
+  label,
+  value,
+}: MetricRowProps) {
+  return (
+    <div className="flex min-h-[54px] items-center justify-between border-b border-[#F3F4F6] px-5 py-3 last:border-b-0">
+      <span className="text-xs text-[#6A7282]">
+        {label}
+      </span>
+
+      <span className="ml-4 max-w-[65%] truncate text-right text-xs font-medium text-[#364153]">
+        {value}
+      </span>
+    </div>
+  );
+}
+
+interface MiniMetricProps {
+  label: string;
+  value: number;
+}
+
+function MiniMetric({
+  label,
+  value,
+}: MiniMetricProps) {
+  return (
+    <div className="rounded-xl bg-[#F9FAFB] p-3">
+      <div className="text-xs text-[#99A1AF]">
+        {label}
+      </div>
+
+      <div className="mt-1 text-lg font-bold text-[#364153]">
+        {value}
+      </div>
+    </div>
+  );
+}
+
+export default PageDetails;
+</file>
+
+<file path="src/services/api.ts">
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ?? "http://localhost:3000";
+
+/* =========================================================
+   SEO ANALYSIS TYPES
+   ========================================================= */
+
+export interface SeoAnalysis {
+  title: string;
+  titleLength: number;
+  hasTitle: boolean;
+
+  metaDescription: string;
+  metaDescriptionLength: number;
+  hasMetaDescription: boolean;
+
+  h1Count: number;
+  h2Count: number;
+
+  imageCount: number;
+  imagesWithoutAlt: number;
+
+  hasCanonical: boolean;
+  hasViewport: boolean;
+
+  totalLinks: number;
+  internalLinksCount: number;
+  externalLinksCount: number;
+  linksWithoutText: number;
+}
+
+/* =========================================================
+   SITE FILE TYPES
+   ========================================================= */
+
+export interface SiteFileStatus {
+  url: string;
+  exists: boolean;
+  statusCode: number;
+}
+
+export interface SiteFilesResult {
+  robotsTxt: SiteFileStatus;
+  sitemapXml: SiteFileStatus;
+}
+
+/* =========================================================
+   RECOMMENDATION TYPES
+   ========================================================= */
+
+export interface Recommendation {
+  type: string;
+  severity: string;
+  message: string;
+  recommendation: string;
+}
+
+/* =========================================================
+   PAGE AUDIT TYPES
+   ========================================================= */
+
+export interface PageAudit {
+  id: number;
+  url: string;
+  score: number;
+  htmlLength: number;
+  statusCode: number;
+  reachable: boolean;
+  depth: number;
+
+  analysis: SeoAnalysis;
+
+  recommendations: Recommendation[];
+
+  siteFiles: SiteFilesResult | null;
+
+  createdAt: string;
+}
+
+/* =========================================================
+   WEBSITE AUDIT TYPES
+   ========================================================= */
+
+export interface WebsiteAudit {
+  id: number;
+  url: string;
+  createdAt: string;
+
+  pagesCrawled: number;
+
+  averageScore: number;
+  highestScore: number;
+  lowestScore: number;
+
+  crawlTimeMs: number;
+  averageTimePerPageMs: number;
+  maxDepthReached: number;
+
+  issuesFound?: number;
+  status?: string;
+}
+
+export interface WebsiteAuditDetails extends WebsiteAudit {
+  pageAudits: PageAudit[];
+}
+
+/* =========================================================
+   CREATE WEBSITE AUDIT RESPONSE
+   ========================================================= */
+
+export interface SiteAuditResult {
+  websiteAuditId: number;
+
+  pageAudits: PageAudit[];
+
+  summary: {
+    pagesCrawled: number;
+    averageScore: number;
+    highestScore: number;
+    lowestScore: number;
+  };
+
+  metrics: {
+    pagesCrawled: number;
+    crawlTimeMs: number;
+    averageTimePerPageMs: number;
+    maxDepthReached: number;
+  };
+
+  errors: unknown[];
+  skipped: unknown[];
+}
+
+/* =========================================================
+   GENERIC API RESPONSE
+   ========================================================= */
+
+interface ApiError {
+  code: string;
+  details?: string;
+}
+
+interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data?: T;
+  error?: ApiError;
+}
+
+/* =========================================================
+   CREATE WEBSITE AUDIT
+   ========================================================= */
+
+export async function createWebsiteAudit(
+  url: string,
+  maxDepth = 2,
+  maxPages = 10,
+): Promise<WebsiteAudit> {
+  const response = await fetch(
+    `${API_BASE_URL}/api/site-audits`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        url,
+        maxDepth,
+        maxPages,
+      }),
+    },
+  );
+
+  let body: ApiResponse<{
+    siteAudit: SiteAuditResult;
+  }>;
+
+  try {
+    body = (await response.json()) as ApiResponse<{
+      siteAudit: SiteAuditResult;
+    }>;
+  } catch {
+    throw new Error(
+      "The server returned an invalid response.",
+    );
+  }
+
+  if (!response.ok || !body.success) {
+    throw new Error(
+      body.error?.details ??
+        body.message ??
+        "Failed to create website audit",
+    );
+  }
+
+  const siteAudit = body.data?.siteAudit;
+
+  if (!siteAudit) {
+    throw new Error(
+      "Website audit was created but no audit data was returned.",
+    );
+  }
+
+  if (!siteAudit.websiteAuditId) {
+    console.error(
+      "Unexpected website audit response:",
+      body,
+    );
+
+    throw new Error(
+      "Website audit was created but its ID was not returned.",
+    );
+  }
+
+  return {
+    id: siteAudit.websiteAuditId,
+
+    url,
+
+    createdAt: new Date().toISOString(),
+
+    pagesCrawled: siteAudit.summary.pagesCrawled,
+
+    averageScore: siteAudit.summary.averageScore,
+
+    highestScore: siteAudit.summary.highestScore,
+
+    lowestScore: siteAudit.summary.lowestScore,
+
+    crawlTimeMs: siteAudit.metrics.crawlTimeMs,
+
+    averageTimePerPageMs:
+      siteAudit.metrics.averageTimePerPageMs,
+
+    maxDepthReached:
+      siteAudit.metrics.maxDepthReached,
+  };
+}
+
+/* =========================================================
+   GET ALL WEBSITE AUDITS
+   ========================================================= */
+
+export async function getWebsiteAudits(): Promise<
+  WebsiteAudit[]
+> {
+  const response = await fetch(
+    `${API_BASE_URL}/api/site-audits`,
+  );
+
+  let body: ApiResponse<{
+    websiteAudits: WebsiteAudit[];
+  }>;
+
+  try {
+    body = (await response.json()) as ApiResponse<{
+      websiteAudits: WebsiteAudit[];
+    }>;
+  } catch {
+    throw new Error(
+      "The server returned an invalid response.",
+    );
+  }
+
+  if (!response.ok || !body.success) {
+    throw new Error(
+      body.error?.details ??
+        body.message ??
+        "Failed to fetch website audits",
+    );
+  }
+
+  return body.data?.websiteAudits ?? [];
+}
+
+/* =========================================================
+   GET WEBSITE AUDIT BY ID
+   ========================================================= */
+
+export async function getWebsiteAuditById(
+  id: number,
+): Promise<WebsiteAuditDetails> {
+  const response = await fetch(
+    `${API_BASE_URL}/api/site-audits/${id}`,
+  );
+
+  let body: ApiResponse<{
+    websiteAudit: WebsiteAuditDetails;
+  }>;
+
+  try {
+    body = (await response.json()) as ApiResponse<{
+      websiteAudit: WebsiteAuditDetails;
+    }>;
+  } catch {
+    throw new Error(
+      "The server returned an invalid response.",
+    );
+  }
+
+  if (!response.ok || !body.success) {
+    throw new Error(
+      body.error?.details ??
+        body.message ??
+        "Failed to fetch website audit",
+    );
+  }
+
+  const websiteAudit = body.data?.websiteAudit;
+
+  if (!websiteAudit) {
+    throw new Error(
+      "Website audit was not returned by the API.",
+    );
+  }
+
+  return websiteAudit;
+}
+</file>
+
+<file path=".env.production">
+VITE_API_BASE_URL=http://localhost:3000
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.env
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SEO-Audit-Platfrom</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="src/pages/Home.tsx">
+const DEFAULT_MAX_DEPTH = 3;
+const DEFAULT_MAX_PAGES = 100;
+
+
+import {
+  AlertTriangle,
+  BarChart3,
+  CheckCircle2,
+  Globe,
+  TrendingUp,
+} from "lucide-react";
+import {
+  useEffect,
+  useState,
+  type FormEvent,
+} from "react";
+import { useNavigate } from "react-router-dom";
+
+import AppShell from "../components/layout/AppShell";
+import { createWebsiteAudit } from "../services/api";
+
+
+
+const loadingMessages = [
+  "Starting audit...",
+  "Crawling website...",
+  "Analyzing pages...",
+  "Saving results...",
+];
+
+const featureItems = [
+  "Performance",
+  "SEO Score",
+  "Accessibility",
+  "Best Practices",
+];
+
+const stats = [
+  {
+    label: "Total Audits",
+    value: "248",
+    icon: BarChart3,
+    iconBg: "bg-[#FCE7F3]",
+    iconColor: "text-[#E91E8C]",
+  },
+  {
+    label: "Avg Score",
+    value: "76",
+    icon: TrendingUp,
+    iconBg: "bg-[#ECFDF3]",
+    iconColor: "text-[#00C950]",
+  },
+  {
+    label: "Issues Found",
+    value: "1,204",
+    icon: AlertTriangle,
+    iconBg: "bg-[#FFF7E6]",
+    iconColor: "text-[#F59E0B]",
+  },
+  {
+    label: "Pages Analyzed",
+    value: "5,831",
+    icon: Globe,
+    iconBg: "bg-[#EFF6FF]",
+    iconColor: "text-[#3B82F6]",
+  },
+];
+
+const recentAudits = [
+  {
+    website: "example.com",
+    date: "Jul 10, 2026",
+    score: 87,
+    status: "Completed",
+  },
+  {
+    website: "mystore.io",
+    date: "Jul 9, 2026",
+    score: 64,
+    status: "Warning",
+  },
+  {
+    website: "blog.zerda.dev",
+    date: "Jul 8, 2026",
+    score: 92,
+    status: "Completed",
+  },
+];
+
+function isValidUrl(value: string) {
+  try {
+    const parsed = new URL(value);
+
+    return (
+      parsed.protocol === "http:" ||
+      parsed.protocol === "https:"
+    );
+  } catch {
+    return false;
+  }
+}
+
+function getScoreColor(score: number) {
+  if (score >= 80) {
+    return "bg-[#22C55E]";
+  }
+
+  if (score >= 60) {
+    return "bg-[#F59E0B]";
+  }
+
+  return "bg-[#EF4444]";
+}
+
+function Home() {
+  const navigate = useNavigate();
+
+  const [url, setUrl] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [loadingMessageIndex, setLoadingMessageIndex] =
+    useState(0);
+
+  useEffect(() => {
+    if (!isSubmitting) {
+      setLoadingMessageIndex(0);
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setLoadingMessageIndex((current) =>
+        Math.min(
+          current + 1,
+          loadingMessages.length - 1,
+        ),
+      );
+    }, 2500);
+
+    return () => {
+      window.clearInterval(interval);
+    };
+  }, [isSubmitting]);
+
+  async function handleSubmit(
+    event: FormEvent<HTMLFormElement>,
+  ) {
+    event.preventDefault();
+
+    const trimmedUrl = url.trim();
+
+    if (!trimmedUrl) {
+      setError("Please enter a website URL.");
+      return;
+    }
+
+    if (!isValidUrl(trimmedUrl)) {
+      setError(
+        "Please enter a valid URL starting with http:// or https://.",
+      );
+      return;
+    }
+
+    setError("");
+    setIsSubmitting(true);
+    setLoadingMessageIndex(0);
+
+    try {
+      const websiteAudit = await createWebsiteAudit(
+        trimmedUrl,
+        DEFAULT_MAX_DEPTH,
+        DEFAULT_MAX_PAGES,
+      );
+
+      navigate(`/audits/${websiteAudit.id}`);
+    } catch (error) {
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Failed to create website audit.",
+      );
+
+      setIsSubmitting(false);
+    }
+  }
+
+  return (
+    <AppShell
+      title="Home"
+      subtitle="Welcome back to your SEO dashboard"
+    >
+      <div className="mx-auto w-full max-w-[975px] px-4 py-5 md:px-6 md:py-8">
+        {/* Main audit card */}
+        <section className="overflow-hidden rounded-2xl border border-[#F3F4F6] bg-white">
+          <div className="grid lg:grid-cols-[1.7fr_0.8fr]">
+            {/* Left side */}
+            <div className="p-7 md:p-8">
+              {/* Badge */}
+              <div className="inline-flex items-center rounded-full bg-[rgba(233,30,140,0.09)] px-3 py-1">
+                <span className="text-xs font-semibold text-[#E91E8C]">
+                  SEO Performance
+                </span>
+              </div>
+
+              {/* Heading */}
+              <h2 className="mt-4 max-w-[360px] text-2xl font-bold leading-[1.35] text-[#1E2939]">
+                Monitor your Website&apos;s{" "}
+                <span className="text-[#E91E8C]">
+                  SEO Performance
+                </span>
+              </h2>
+
+              {/* Description */}
+              <p className="mt-3 max-w-[400px] text-sm leading-[1.65] text-[#6A7282]">
+                Run a comprehensive SEO audit to uncover your
+                score and get actionable insights to optimize
+                your pages and rank higher.
+              </p>
+
+              {/* Audit form / loading state */}
+              {isSubmitting ? (
+                <div className="mt-6 rounded-[14px] border border-[#F3F4F6] bg-[#FCFCFD] p-5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[rgba(233,30,140,0.09)]">
+                      <svg
+                        className="h-4 w-4 animate-spin text-[#E91E8C]"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="9"
+                          className="opacity-25"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                        />
+
+                        <path
+                          d="M21 12a9 9 0 0 0-9-9"
+                          className="opacity-100"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-[#1E2939]">
+                        {
+                          loadingMessages[
+                            loadingMessageIndex
+                          ]
+                        }
+                      </p>
+
+                      <p className="mt-0.5 text-xs text-[#99A1AF]">
+                        This may take a moment while we analyze
+                        your website.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Indeterminate progress bar */}
+                  <div
+                    className="mt-5 h-2 overflow-hidden rounded-full bg-[#F3F4F6]"
+                    aria-label="Audit in progress"
+                  >
+                    <div className="h-full w-1/3 animate-pulse rounded-full bg-[#E91E8C]" />
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <form
+                    onSubmit={handleSubmit}
+                    className="mt-6 flex flex-col gap-3 sm:flex-row"
+                  >
+                    <input
+                      type="url"
+                      value={url}
+                      onChange={(event) =>
+                        setUrl(event.target.value)
+                      }
+                      placeholder="https://yourwebsite.com"
+                      aria-label="Website URL"
+                      className="h-[41px] min-w-0 flex-1 rounded-[14px] border border-[#E5E7EB] px-4 text-sm text-[#1E2939] outline-none placeholder:text-[#99A1AF] focus:border-[#E91E8C]"
+                    />
+
+                    <button
+                      type="submit"
+                      className="flex h-[41px] shrink-0 items-center justify-center gap-2 rounded-[14px] bg-[#E91E8C] px-5 text-sm font-semibold text-white transition hover:bg-[#D91A80]"
+                    >
+                      Start Audit
+                      <span>→</span>
+                    </button>
+                  </form>
+
+                  {error && (
+                    <p className="mt-3 text-xs font-medium text-[#DC2626]">
+                      {error}
+                    </p>
+                  )}
+                </>
+              )}
+
+              {/* Feature badges */}
+              <div className="mt-7 flex flex-wrap gap-3">
+                {featureItems.map((feature) => (
+                  <div
+                    key={feature}
+                    className="inline-flex items-center gap-1.5 rounded-[10px] bg-[#F9FAFB] px-3 py-1.5"
+                  >
+                    <CheckCircle2
+                      size={12}
+                      strokeWidth={1.8}
+                      className="text-[#00C950]"
+                    />
+
+                    <span className="text-xs text-[#6A7282]">
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right score panel */}
+            <div className="flex flex-col items-center justify-center border-t border-[#F3F4F6] bg-[#FCFCFD] p-7 lg:border-l lg:border-t-0">
+              {/* Overall score */}
+              <div className="relative flex h-[154px] w-[154px] items-center justify-center">
+                <div
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background:
+                      "conic-gradient(#E91E8C 0deg 295deg, transparent 295deg 360deg)",
+                    mask:
+                      "radial-gradient(farthest-side, transparent calc(100% - 13px), #000 calc(100% - 12px))",
+                    WebkitMask:
+                      "radial-gradient(farthest-side, transparent calc(100% - 13px), #000 calc(100% - 12px))",
+                  }}
+                />
+
+                <div className="text-center">
+                  <div className="text-3xl font-bold leading-9 text-[#1E2939]">
+                    82
+                  </div>
+
+                  <div className="text-xs text-[#99A1AF]">
+                    Overall Score
+                  </div>
+                </div>
+              </div>
+
+              {/* Category scores */}
+              <div className="mt-4 grid w-full max-w-[214px] grid-cols-2 gap-3">
+                <ScoreMiniCard
+                  label="Performance"
+                  score="78"
+                  tone="pink"
+                />
+
+                <ScoreMiniCard
+                  label="SEO"
+                  score="91"
+                  tone="green"
+                />
+
+                <ScoreMiniCard
+                  label="Accessibility"
+                  score="85"
+                  tone="blue"
+                />
+
+                <ScoreMiniCard
+                  label="Best Practices"
+                  score="74"
+                  tone="orange"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Statistics */}
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {stats.map(
+            ({
+              label,
+              value,
+              icon: Icon,
+              iconBg,
+              iconColor,
+            }) => (
+              <div
+                key={label}
+                className="flex items-center gap-3 rounded-2xl border border-[#F3F4F6] bg-white px-4 py-4"
+              >
+                <div
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${iconBg}`}
+                >
+                  <Icon
+                    size={18}
+                    strokeWidth={1.8}
+                    className={iconColor}
+                  />
+                </div>
+
+                <div>
+                  <div className="text-xl font-bold leading-6 text-[#1E2939]">
+                    {value}
+                  </div>
+
+                  <div className="mt-1 text-xs text-[#99A1AF]">
+                    {label}
+                  </div>
+                </div>
+              </div>
+            ),
+          )}
+        </div>
+
+        {/* Recent audits */}
+        <section className="mt-6 overflow-hidden rounded-2xl border border-[#F3F4F6] bg-white">
+          <div className="flex items-center justify-between border-b border-[#F3F4F6] px-5 py-4">
+            <h3 className="text-sm font-semibold text-[#1E2939]">
+              Recent Audits
+            </h3>
+
+            <button
+              type="button"
+              onClick={() => navigate("/audits")}
+              className="text-xs font-medium text-[#E91E8C] hover:underline"
+            >
+              View all →
+            </button>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[650px] text-left">
+              <thead>
+                <tr className="border-b border-[#F3F4F6]">
+                  <th className="px-5 py-3 text-xs font-medium text-[#99A1AF]">
+                    Website
+                  </th>
+
+                  <th className="px-5 py-3 text-xs font-medium text-[#99A1AF]">
+                    Date
+                  </th>
+
+                  <th className="px-5 py-3 text-xs font-medium text-[#99A1AF]">
+                    Score
+                  </th>
+
+                  <th className="px-5 py-3 text-xs font-medium text-[#99A1AF]">
+                    Status
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {recentAudits.map((audit) => (
+                  <tr
+                    key={`${audit.website}-${audit.date}`}
+                    className="border-b border-[#F3F4F6] last:border-b-0"
+                  >
+                    <td className="px-5 py-4 text-sm font-medium text-[#334155]">
+                      {audit.website}
+                    </td>
+
+                    <td className="px-5 py-4 text-xs text-[#99A1AF]">
+                      {audit.date}
+                    </td>
+
+                    <td className="px-5 py-4">
+                      <span
+                        className={`inline-flex h-6 min-w-6 items-center justify-center rounded-full px-2 text-xs font-semibold text-white ${getScoreColor(
+                          audit.score,
+                        )}`}
+                      >
+                        {audit.score}
+                      </span>
+                    </td>
+
+                    <td className="px-5 py-4">
+                      <span
+                        className={
+                          audit.status === "Completed"
+                            ? "rounded-full bg-[#ECFDF3] px-3 py-1 text-xs font-medium text-[#16A34A]"
+                            : "rounded-full bg-[#FFF7E6] px-3 py-1 text-xs font-medium text-[#D97706]"
+                        }
+                      >
+                        {audit.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </AppShell>
+  );
+}
+
+interface ScoreMiniCardProps {
+  label: string;
+  score: string;
+  tone: "pink" | "green" | "blue" | "orange";
+}
+
+function ScoreMiniCard({
+  label,
+  score,
+  tone,
+}: ScoreMiniCardProps) {
+  const styles = {
+    pink: "text-[#E91E8C]",
+    green: "text-[#16A34A]",
+    blue: "text-[#3B82F6]",
+    orange: "text-[#F59E0B]",
+  };
+
+  return (
+    <div className="flex h-[53px] flex-col items-center justify-center rounded-[10px] border border-[#F3F4F6] bg-white">
+      <span
+        className={`text-base font-bold ${styles[tone]}`}
+      >
+        {score}
+      </span>
+
+      <span className="mt-0.5 text-[10px] text-[#99A1AF]">
+        {label}
+      </span>
+    </div>
+  );
+}
+
+export default Home;
 </file>
 
 </files>

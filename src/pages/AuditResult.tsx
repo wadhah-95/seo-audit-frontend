@@ -6,7 +6,6 @@ import {
   ExternalLink,
   Gauge,
   Globe,
- 
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -199,7 +198,7 @@ function AuditResult() {
             <button
               type="button"
               onClick={() => navigate("/")}
-              className="mb-2 inline-flex items-center gap-1.5 text-xs font-medium text-[#99A1AF] transition hover:text-[#E91E8C]"
+              className="mb-2 inline-flex items-center gap-1.5 text-xs font-medium text-[#99A1AF] transition hover:text-[#0e7490]"
             >
               <ArrowLeft size={14} />
               Back to Home
@@ -224,7 +223,7 @@ function AuditResult() {
         <section className="rounded-2xl border border-[#F3F4F6] bg-white p-5 md:p-6">
           <div className="grid gap-5 lg:grid-cols-[1.1fr_1fr]">
             <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-[rgba(233,30,140,0.09)] px-3 py-1 text-xs font-semibold text-[#E91E8C]">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E6F4F7] px-3 py-1 text-xs font-semibold text-[#0e7490]">
                 <Gauge size={12} />
                 SEO Performance
               </span>
@@ -246,7 +245,7 @@ function AuditResult() {
 
               <div className="mt-4 h-2 max-w-md overflow-hidden rounded-full bg-[#F3F4F6]">
                 <div
-                  className="h-full rounded-full bg-[#E91E8C]"
+                  className="h-full rounded-full bg-[#0e7490]"
                   style={{
                     width: `${Math.max(
                       0,
@@ -295,7 +294,7 @@ function AuditResult() {
             <button
               type="button"
               onClick={() => navigate(`/audits/${audit.id}`)}
-              className="text-xs font-medium text-[#E91E8C]"
+              className="text-xs font-medium text-[#0e7490]"
             >
               View page details →
             </button>
@@ -344,7 +343,7 @@ function AuditResult() {
                               `/audits/${audit.id}/pages/${insight.pageId}`,
                             )
                           }
-                          className="block max-w-full truncate text-left text-xs font-medium text-[#364153] hover:text-[#E91E8C]"
+                          className="block max-w-full truncate text-left text-xs font-medium text-[#364153] hover:text-[#0e7490]"
                           title={insight.pageUrl}
                         >
                           {insight.pageUrl}
@@ -431,7 +430,7 @@ function AuditResult() {
                         `/audits/${audit.id}/pages/${page.id}`,
                       )
                     }
-                    className="inline-flex items-center gap-1 text-xs font-medium text-[#E91E8C]"
+                    className="inline-flex items-center gap-1 text-xs font-medium text-[#0e7490]"
                   >
                     Details
                     <ExternalLink size={13} />
@@ -459,11 +458,11 @@ function SummaryCard({
 }: SummaryCardProps) {
   return (
     <div className="rounded-xl border border-[#F3F4F6] bg-[#FCFCFD] p-4">
-      <div className="flex h-8 w-8 items-center justify-center rounded-[9px] bg-white">
+      <div className="flex h-8 w-8 items-center justify-center rounded-[9px] bg-[#E6F4F7]">
         <Icon
           size={15}
           strokeWidth={1.7}
-          className="text-[#E91E8C]"
+          className="text-[#0e7490]"
         />
       </div>
 
